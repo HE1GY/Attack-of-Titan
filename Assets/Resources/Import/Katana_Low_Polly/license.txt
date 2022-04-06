@@ -1,0 +1,11 @@
+Model Information:
+* title:	Katana Low Polly
+* source:	https://sketchfab.com/3d-models/katana-low-polly-916e9431cbf64783a28f633d8df067ed
+* author:	mr.matrix207 (https://sketchfab.com/mr.matrix207)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Katana Low Polly" (https://sketchfab.com/3d-models/katana-low-polly-916e9431cbf64783a28f633d8df067ed) by mr.matrix207 (https://sketchfab.com/mr.matrix207) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

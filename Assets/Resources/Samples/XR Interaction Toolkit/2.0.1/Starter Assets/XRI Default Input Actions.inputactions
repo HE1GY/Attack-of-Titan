@@ -434,12 +434,12 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ThumbStick",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "6f4d6b7c-ce09-4891-8729-bd82baa2401c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1,pressPoint=1.401298E-45)",
                     "initialStateCheck": false
                 }
             ],
@@ -627,7 +627,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThumbStick",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
