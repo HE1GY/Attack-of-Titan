@@ -1,5 +1,4 @@
-﻿using System;
-using OmniDirectionalMobilityFolder;
+﻿using OmniDirectionalMobilityFolder;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -68,13 +67,18 @@ namespace Player
 
         private void InteractionSubscribing()
         {
-            _leftRopeRaising.action.performed += ctx => _leftRising = ctx.ReadValueAsButton();
-            _rightRopeRaising.action.performed += ctx => _rightRising = ctx.ReadValueAsButton();
+            _leftRopeRaising.action.started += ctx => _leftRising = ctx.ReadValueAsButton();
+            _leftRopeRaising.action.canceled += ctx => _leftRising = ctx.ReadValueAsButton();
+            _rightRopeRaising.action.started += ctx => _rightRising = ctx.ReadValueAsButton();
+            _rightRopeRaising.action.canceled += ctx => _rightRising = ctx.ReadValueAsButton();
             
             _boostAction.action.started +=ctx=>
             {
-                Vector2 input = ctx.ReadValue<Vector2>();
-                _gasBoosting.Boost(input);
+                if (_leftHooked || _rightHooked)
+                {
+                    Vector2 input = ctx.ReadValue<Vector2>();
+                    _gasBoosting.Boost(input);
+                }
             };
                 
             _leftHand.GetBlade += blade =>
@@ -120,6 +124,11 @@ namespace Player
         private void CheckMoveType()
         {
             _continuousMove.enabled = !_leftHooked && !_rightHooked;
+        }
+
+        public float GetVelocity()
+        {
+            return _rigidbody.velocity.magnitude;
         }
     }
 }

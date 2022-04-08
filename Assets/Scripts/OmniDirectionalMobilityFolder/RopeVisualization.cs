@@ -7,7 +7,7 @@ namespace OmniDirectionalMobilityFolder
         [SerializeField]private LineRenderer _lineRenderer;
         [SerializeField]private AnimationCurve _affectCurve;
         
-         private Transform _shootPoint;
+        private Transform _shootPoint;
         
         private VisualizationSpring _visualizationSpring;
 
@@ -61,7 +61,7 @@ namespace OmniDirectionalMobilityFolder
 
                 _currentGrapplePosition = Vector3.Lerp(_currentGrapplePosition, grapplePoint, Time.deltaTime * LerpSpeed);
 
-                for (var i = 0; i < Quality + 1; i++) {
+                for (var i = 0; i < Quality +1; i++) {
                     var delta = i / (float) Quality;
                     var offset = up * WaveHeight * Mathf.Sin(delta * WaveCount * Mathf.PI) * _visualizationSpring.Value *
                                  _affectCurve.Evaluate(delta);

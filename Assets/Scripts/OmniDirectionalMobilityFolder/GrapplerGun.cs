@@ -6,7 +6,7 @@ namespace OmniDirectionalMobilityFolder
     {
         private const float MaxDistance=100;
         private const int RiseDistance = 1;
-        private const int RaiseSpeed = 10;
+        private const int RaiseSpeed = 15;
         private const int SpringJointMassScale = 50;
         private const int SpringJointSpring = 1;
 
@@ -36,7 +36,6 @@ namespace OmniDirectionalMobilityFolder
                 {
                     _springJoint=_player.AddComponent<SpringJoint>();
                 }
-
                 _springJoint.autoConfigureConnectedAnchor = false;
                 _springJoint.connectedAnchor = target;
                 _springJoint.maxDistance =Vector3.Distance(target, _shootPoint.position);

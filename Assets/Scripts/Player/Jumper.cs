@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Player
 {
     public class Jumper : MonoBehaviour
     {
         private const float HoldTime=1;
-    
+
+        [SerializeField] private ActionBasedContinuousMoveProvider _continuousMove;
         [SerializeField]private InputActionReference _inputAction;
         [SerializeField] private float _maxForce;
     
@@ -22,7 +24,10 @@ namespace Player
 
         private void Jump(float force)
         {
-            _rigidbody.AddForce(Vector3.up*force,ForceMode.VelocityChange);
+            if (_continuousMove.enabled)
+            {
+                _rigidbody.AddForce(Vector3.up*force,ForceMode.VelocityChange);
+            }
         }
 
         private void ScaledJump(InputAction.CallbackContext ctx)
