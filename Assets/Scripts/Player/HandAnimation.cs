@@ -1,32 +1,34 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class HandAnimation : MonoBehaviour
+namespace Player
 {
-    private static readonly int TriggerHash = Animator.StringToHash("Trigger");
-    private static readonly int GribHash = Animator.StringToHash("Grib");
+    public class HandAnimation : MonoBehaviour
+    {
+        private static readonly int TriggerHash = Animator.StringToHash("Trigger");
+        private static readonly int GribHash = Animator.StringToHash("Grib");
     
-    private Animator _animator;
-    private ActionBasedController _controller;
+        private Animator _animator;
+        private ActionBasedController _controller;
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-        _controller = GetComponentInParent<ActionBasedController>();
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            _controller = GetComponentInParent<ActionBasedController>();
         
-        _controller.activateActionValue.action.performed += UpdateTriggerValue;
-        _controller.selectActionValue.action.performed += UpdateGrabValue;
-    }
+            _controller.activateActionValue.action.performed += UpdateTriggerValue;
+            _controller.selectActionValue.action.performed += UpdateGrabValue;
+        }
 
-    private void UpdateTriggerValue(InputAction.CallbackContext ctx)
-    {
-        _animator.SetFloat(TriggerHash,ctx.ReadValue<float>());
-    }
+        private void UpdateTriggerValue(InputAction.CallbackContext ctx)
+        {
+            _animator.SetFloat(TriggerHash,ctx.ReadValue<float>());
+        }
 
-    private void UpdateGrabValue(InputAction.CallbackContext ctx)
-    {
-        _animator.SetFloat(GribHash,ctx.ReadValue<float>());
+        private void UpdateGrabValue(InputAction.CallbackContext ctx)
+        {
+            _animator.SetFloat(GribHash,ctx.ReadValue<float>());
+        }
     }
 }

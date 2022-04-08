@@ -6,7 +6,8 @@ namespace OmniDirectionalMobilityFolder
     {
         [SerializeField]private LineRenderer _lineRenderer;
         [SerializeField]private AnimationCurve _affectCurve;
-        [SerializeField] private Transform _shootPoint;
+        
+         private Transform _shootPoint;
         
         private VisualizationSpring _visualizationSpring;
 
@@ -35,7 +36,10 @@ namespace OmniDirectionalMobilityFolder
 
         private void LateUpdate()
         {
-            DrawRope();
+            if (_shootPoint)
+            {
+                DrawRope();
+            }
         }
 
       private  void DrawRope()
@@ -72,6 +76,11 @@ namespace OmniDirectionalMobilityFolder
                 if (_lineRenderer.positionCount > 0)
                     _lineRenderer.positionCount = 0;
             }
+      }
+
+      public void SetShootPoint(Transform shootPoint)
+      {
+          _shootPoint = shootPoint;
       }
 
     }

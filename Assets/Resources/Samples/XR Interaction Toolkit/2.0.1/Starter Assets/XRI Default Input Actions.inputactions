@@ -434,13 +434,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "ThumbPress",
                     "type": "Button",
                     "id": "6f4d6b7c-ce09-4891-8729-bd82baa2401c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(duration=1,pressPoint=1.401298E-45)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Stick",
+                    "type": "Value",
+                    "id": "8a8895ca-2310-4539-95ed-607c20bd6eb1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -627,7 +636,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "ThumbPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40b1c964-6e85-46db-80ce-c89381189aed",
+                    "path": "<XRController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -708,6 +728,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ThumbPress",
+                    "type": "Button",
+                    "id": "9ae5f1a9-fcc4-400b-93ed-40f919f009e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -886,6 +915,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "4d4dc8b1-0b5f-4938-8a21-72afd448fb1c",
+                    "path": "<XRController>/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThumbPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1089,34 +1129,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Test",
-            "id": "dee65ae2-8a98-468e-bf4e-034e8177b1f8",
-            "actions": [
-                {
-                    "name": "Test",
-                    "type": "Button",
-                    "id": "253e55a1-e144-49e4-b1e5-12bbe979eefe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "d5a6b4ee-d6fa-4ea8-9e25-44ae84285145",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
