@@ -4,7 +4,7 @@ namespace OmniDirectionalMobilityFolder
 {
     public class GasBoosting
     {
-        private const float BoostVelocity = 10f;
+        private const float BoostVelocity = 25f;
         private Rigidbody _rigidbody;
         private Transform _camTrasform;
 
@@ -18,9 +18,8 @@ namespace OmniDirectionalMobilityFolder
         public void Boost(Vector2 direction)
         {
             Vector3 forceDirection = _camTrasform.forward * direction.y + _camTrasform.right * direction.x;
-            forceDirection.y = 0;
             forceDirection.Normalize();
-            _rigidbody.AddForce(forceDirection*BoostVelocity,ForceMode.VelocityChange);
+            _rigidbody.velocity = forceDirection * BoostVelocity;
         }
 
     }

@@ -58,7 +58,7 @@ namespace OmniDirectionalMobilityFolder
 
         public void Raising()
         {
-            if (Vector3.Distance(_springJoint.connectedAnchor, _shootPoint.position) > RiseDistance)
+            if (_shootPoint && Vector3.Distance(_springJoint.connectedAnchor, _shootPoint.position) > RiseDistance)
             {
                 _springJoint.maxDistance -= Time.deltaTime*RaiseSpeed;
             }

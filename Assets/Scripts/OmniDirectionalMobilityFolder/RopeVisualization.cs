@@ -32,6 +32,7 @@ namespace OmniDirectionalMobilityFolder
         {
             _visualizationSpring = new VisualizationSpring();
             _visualizationSpring.SetTarget(0);
+            _lineRenderer.positionCount = 0;
         }
 
         private void LateUpdate()
@@ -46,11 +47,12 @@ namespace OmniDirectionalMobilityFolder
       {
           if (IsGrappling)
             {
-                if (_lineRenderer.positionCount == 0) {
+                if (_lineRenderer.positionCount==0) {
                     _visualizationSpring.SetVelocity(Velocity);
                     _lineRenderer.positionCount = Quality + 1;
+                    _currentGrapplePosition = _shootPoint.position;
                 }
-        
+
                 _visualizationSpring.SetDamper(Damper);
                 _visualizationSpring.SetStrength(Strength);
                 _visualizationSpring.Update(Time.deltaTime);
@@ -65,13 +67,13 @@ namespace OmniDirectionalMobilityFolder
                     var delta = i / (float) Quality;
                     var offset = up * WaveHeight * Mathf.Sin(delta * WaveCount * Mathf.PI) * _visualizationSpring.Value *
                                  _affectCurve.Evaluate(delta);
-            
+                    
                     _lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, _currentGrapplePosition, delta) + offset);
                 }
             }
             else
             {
-                _currentGrapplePosition = _shootPoint.position;;
+                _currentGrapplePosition = _shootPoint.position;
                 _visualizationSpring.Reset();
                 if (_lineRenderer.positionCount > 0)
                     _lineRenderer.positionCount = 0;
