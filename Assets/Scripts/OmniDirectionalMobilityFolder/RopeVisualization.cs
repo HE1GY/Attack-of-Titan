@@ -4,11 +4,13 @@ namespace OmniDirectionalMobilityFolder
 {
     public class RopeVisualization: MonoBehaviour
     {
+        public bool IsGrappling { get; set; }
+        
         [SerializeField]private LineRenderer _lineRenderer;
         [SerializeField]private AnimationCurve _affectCurve;
-        
+
         private Transform _shootPoint;
-        
+
         private VisualizationSpring _visualizationSpring;
 
         private const int Quality = 500;
@@ -21,11 +23,11 @@ namespace OmniDirectionalMobilityFolder
 
         private Vector3 _grapplePoint;
         private Vector3 _currentGrapplePosition;
-        public bool IsGrappling { get; set; }
+        private SpringJoint _springJoint;
 
-        public void SetGrapplePoint(Vector3 point)
+        public void SetSprintJoint(SpringJoint springJoint)
         {
-            _grapplePoint = point;
+            _springJoint = springJoint;
         }
 
         public void Awake()
@@ -37,6 +39,16 @@ namespace OmniDirectionalMobilityFolder
 
         private void LateUpdate()
         {
+            if (_springJoint&&_springJoint.connectedBody)
+            {
+                _grapplePoint = _springJoint.connectedBody.transform.TransformPoint(_springJoint.connectedAnchor);
+                print("Spring");
+            }
+            else if(_springJoint)
+            {
+                _grapplePoint = _springJoint.connectedAnchor;
+            }
+            
             if (_shootPoint)
             {
                 DrawRope();

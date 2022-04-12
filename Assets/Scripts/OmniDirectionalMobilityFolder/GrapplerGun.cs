@@ -16,7 +16,7 @@ namespace OmniDirectionalMobilityFolder
         private  Transform _shootPoint;
         private  SpringJoint _springJoint;
         private RopeVisualization _ropeVisualization;
-        
+
 
         public GrapplerGun( LayerMask layerMask, GameObject player,RopeVisualization ropeVisualization)
         {
@@ -30,19 +30,19 @@ namespace OmniDirectionalMobilityFolder
         {
             _shootPoint = shootPointTransform;
             
-            if (TryGetTarget(out Vector3 target))
+            if (TryGetTarget(out Vector3 targetPosition))
             {
                 if (_springJoint == null)
                 {
                     _springJoint=_player.AddComponent<SpringJoint>();
                 }
                 _springJoint.autoConfigureConnectedAnchor = false;
-                _springJoint.connectedAnchor = target;
-                _springJoint.maxDistance =Vector3.Distance(target, _shootPoint.position);
+                _springJoint.connectedAnchor = targetPosition;
+                _springJoint.maxDistance =Vector3.Distance(targetPosition, _shootPoint.position);
                 _springJoint.massScale =SpringJointMassScale;
                 _springJoint.spring = SpringJointSpring;
 
-                _ropeVisualization.SetGrapplePoint(target);
+                _ropeVisualization.SetSprintJoint(_springJoint);
                 _ropeVisualization.IsGrappling = true;
             }
         }
@@ -64,7 +64,7 @@ namespace OmniDirectionalMobilityFolder
             }
         }
 
-        private bool TryGetTarget(out Vector3 targetPos)
+        private bool TryGetTarget(out Vector3 targetPosition)
         {
             {
                 Vector3 rayOrg = _shootPoint.position;
@@ -72,11 +72,15 @@ namespace OmniDirectionalMobilityFolder
                 Ray ray = new Ray(rayOrg, rayDir);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit, MaxDistance, _layerMask))
                 {
-                    targetPos = raycastHit.point;
+                    if (raycastHit.rigidbody)
+                    {
+                        _springJoint.connectedBody = raycastHit.rigidbody;
+                    }
+                    targetPosition = raycastHit.point;
                     return true;
                 }
 
-                targetPos = Vector3.zero;
+                targetPosition = Vector3.zero;
                 return false;
             }
         }

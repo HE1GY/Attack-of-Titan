@@ -7,13 +7,16 @@ namespace Player
 {
     public class Maneuvering : MonoBehaviour
     {
+        [Header("Visualization")]
         [SerializeField] private RopeVisualization _ropeVisualizationLeft;
         [SerializeField] private RopeVisualization _ropeVisualizationRight;
         
+        [Header("Grapple")]
         [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private InputActionReference _leftRopeRaising;
+        [SerializeField] private InputActionReference _rightRopeRaising;
         
         [SerializeField] private ActionBasedContinuousMoveProvider _continuousMove;
-
         [SerializeField] private HandInteractor _leftHand;
         [SerializeField] private HandInteractor _rightHand;
 
@@ -21,9 +24,7 @@ namespace Player
         [SerializeField] private Transform _camTransform;
         [SerializeField] private InputActionReference _boostAction;
 
-        [SerializeField] private InputActionReference _leftRopeRaising;
-        [SerializeField] private InputActionReference _rightRopeRaising;
-
+        
         private BladeInteractable _leftBlade;
         private BladeInteractable _rightBlade;
         
