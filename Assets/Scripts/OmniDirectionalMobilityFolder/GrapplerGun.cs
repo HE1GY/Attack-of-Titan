@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace OmniDirectionalMobilityFolder
 {
@@ -29,18 +30,29 @@ namespace OmniDirectionalMobilityFolder
         public void StartGrappling(Transform shootPointTransform)
         {
             _shootPoint = shootPointTransform;
-            
-            if (TryGetTarget(out Vector3 targetPosition))
+            if (_springJoint == null)
             {
-                if (_springJoint == null)
-                {
-                    _springJoint=_player.AddComponent<SpringJoint>();
-                }
+                _springJoint=_player.AddComponent<SpringJoint>();
+            }
+
+            if (TryGetTargetRaycastHit(out RaycastHit targetRaycastHit))
+            {
                 _springJoint.autoConfigureConnectedAnchor = false;
-                _springJoint.connectedAnchor = targetPosition;
-                _springJoint.maxDistance =Vector3.Distance(targetPosition, _shootPoint.position);
+                if (targetRaycastHit.rigidbody)
+                {
+                    _springJoint.connectedBody = targetRaycastHit.rigidbody;
+                    _springJoint.connectedAnchor = targetRaycastHit.rigidbody.transform.InverseTransformPoint(targetRaycastHit.point);
+                }
+                else
+                {
+                    _springJoint.connectedAnchor = targetRaycastHit.point;
+                }
+                
+                _springJoint.maxDistance = Vector3.Distance(targetRaycastHit.point, _shootPoint.position);
                 _springJoint.massScale =SpringJointMassScale;
                 _springJoint.spring = SpringJointSpring;
+                _springJoint.breakForce = 100;
+                _springJoint.breakTorque = 100;
 
                 _ropeVisualization.SetSprintJoint(_springJoint);
                 _ropeVisualization.IsGrappling = true;
@@ -52,6 +64,7 @@ namespace OmniDirectionalMobilityFolder
             if (_springJoint)
             {
                 _springJoint.maxDistance = Mathf.Infinity;
+                _springJoint.connectedBody = null;
             }
             _ropeVisualization.IsGrappling = false;
         }
@@ -64,7 +77,7 @@ namespace OmniDirectionalMobilityFolder
             }
         }
 
-        private bool TryGetTarget(out Vector3 targetPosition)
+        private bool TryGetTargetRaycastHit(out RaycastHit targetRaycastHit)
         {
             {
                 Vector3 rayOrg = _shootPoint.position;
@@ -72,15 +85,11 @@ namespace OmniDirectionalMobilityFolder
                 Ray ray = new Ray(rayOrg, rayDir);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit, MaxDistance, _layerMask))
                 {
-                    if (raycastHit.rigidbody)
-                    {
-                        _springJoint.connectedBody = raycastHit.rigidbody;
-                    }
-                    targetPosition = raycastHit.point;
+                    targetRaycastHit = raycastHit;
                     return true;
                 }
 
-                targetPosition = Vector3.zero;
+                targetRaycastHit =new RaycastHit();
                 return false;
             }
         }

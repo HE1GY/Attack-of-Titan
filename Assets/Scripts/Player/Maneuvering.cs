@@ -104,8 +104,8 @@ namespace Player
                 _rightBlade = blade;
                 _rightBlade.Hook +=shootPoint=>
                 {
-                    _ropeVisualizationRight.SetShootPoint(shootPoint);
                     _rightGrappler.StartGrappling(shootPoint);
+                    _ropeVisualizationRight.SetShootPoint(shootPoint);
                     _rightHooked = true;
                     CheckMoveType();
                 };

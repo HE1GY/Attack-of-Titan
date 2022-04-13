@@ -11,6 +11,6 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
-        Physics.gravity = new Vector3(0, -100, 0);
+        
     }
 }

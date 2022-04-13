@@ -39,14 +39,17 @@ namespace OmniDirectionalMobilityFolder
 
         private void LateUpdate()
         {
-            if (_springJoint&&_springJoint.connectedBody)
+            if (_springJoint)
             {
-                _grapplePoint = _springJoint.connectedBody.transform.TransformPoint(_springJoint.connectedAnchor);
-                print("Spring");
-            }
-            else if(_springJoint)
-            {
-                _grapplePoint = _springJoint.connectedAnchor;
+                if (_springJoint.connectedBody)
+                {
+                    _grapplePoint = _springJoint.connectedBody.transform.TransformPoint(_springJoint.connectedAnchor);
+                }
+                else
+                {
+                    _grapplePoint = _springJoint.connectedAnchor;
+                }
+               
             }
             
             if (_shootPoint)
@@ -82,6 +85,8 @@ namespace OmniDirectionalMobilityFolder
                     
                     _lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, _currentGrapplePosition, delta) + offset);
                 }
+                
+                
             }
             else
             {
