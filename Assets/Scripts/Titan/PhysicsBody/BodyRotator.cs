@@ -4,10 +4,13 @@ namespace Titan.PhysicsBody
 {
     public class BodyRotator : MonoBehaviour
     {
+        private const float TurnSpeed = 0.0001f;
         public Transform Target { get; set; }
         private ConfigurableJoint _configurableJoint;
 
         private Quaternion _startRotation;
+
+        private float _interpolationRatio;
 
         private void Awake()
         {
@@ -23,8 +26,16 @@ namespace Titan.PhysicsBody
                 Vector3 direction = Target.position - _configurableJoint.transform.position;
                 direction.y = 0;
                 Quaternion rotation=Quaternion.LookRotation(direction);
-            
-                _configurableJoint.targetRotation=Quaternion.Inverse(rotation)*_startRotation;
+
+                if (_interpolationRatio < 1)
+                {
+                    _interpolationRatio += Time.fixedDeltaTime*TurnSpeed;
+                    _configurableJoint.targetRotation= Quaternion.Slerp( _configurableJoint.targetRotation ,Quaternion.Inverse(rotation)*_startRotation,_interpolationRatio);
+                }
+                else
+                {
+                    _interpolationRatio = 0;
+                }
             }
         }
     }

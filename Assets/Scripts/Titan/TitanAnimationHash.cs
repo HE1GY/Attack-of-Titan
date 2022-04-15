@@ -6,8 +6,8 @@ namespace Titan
     {
         public int SpleepingHash{ get; }  = Animator.StringToHash("Sleeping");
         public int WalkHash { get; } = Animator.StringToHash("Walk");
-        public int LegAttackHash { get; } = Animator.StringToHash("LegAttack");
-        public int HandAttackHash { get; } = Animator.StringToHash("HandAttack");
+        public int LegsAttackHash { get; } = Animator.StringToHash("LegsAttack");
+        public int HandsAttackHash { get; } = Animator.StringToHash("HandsAttack");
         public int SteamAttackHash { get; } =  Animator.StringToHash("SteamAttack");
     }
 }

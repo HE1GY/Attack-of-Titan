@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Titan
 {
     public class TitanAnimation
     {
-        private TitanAnimationHash _titanAnimationHash=new TitanAnimationHash();
-        private Animator _animator;
+        private const float NormalizedTransitionDuration = 0.5f;
+        private const int LayerIndex = 0;
+        private readonly TitanAnimationHash _titanAnimationHash=new TitanAnimationHash();
+        private readonly Animator _animator;
 
         public TitanAnimation(Animator animator)
         {
@@ -14,25 +17,34 @@ namespace Titan
 
         public void PlaySleeping()
         {
-            _animator.CrossFade(_titanAnimationHash.SpleepingHash,0.5f);
+            _animator.CrossFade(_titanAnimationHash.SpleepingHash,NormalizedTransitionDuration);
         }
 
         public void PlayWalk()
         {
-            _animator.CrossFade(_titanAnimationHash.WalkHash,0.5f);
+            _animator.CrossFade(_titanAnimationHash.WalkHash,NormalizedTransitionDuration);
         }
 
-        public void PlayLegAttack()
+        public void PlayLegsAttack()
         {
-            _animator.CrossFade(_titanAnimationHash.LegAttackHash,0.5f);
+            _animator.CrossFade(_titanAnimationHash.LegsAttackHash,NormalizedTransitionDuration);
         }
-        public void PlayHandAttack()
+        public void PlayHandsAttack()
         {
-            _animator.CrossFade(_titanAnimationHash.HandAttackHash,0.5f);
+            _animator.Play(_titanAnimationHash.HandsAttackHash);
         }
         public void PlaySteamAttack()
         {
-            _animator.CrossFade(_titanAnimationHash.SteamAttackHash,0.5f);
+            _animator.Play(_titanAnimationHash.SteamAttackHash);
+        }
+
+        public float GetCurrentAnimationDuration()
+        {
+            AnimationClip[] clipsInfo = _animator.runtimeAnimatorController.animationClips;
+
+            float time=  clipsInfo[0].length;
+            Debug.Log(time);
+            return time;
         }
     }
 }

@@ -9,10 +9,10 @@ namespace Titan
         public event Action<Transform> Detected; 
         public event Action NotDetected; 
         
-        private LayerMask _obstacles;
-        private float _viewLength;
-        private float _fovAngle;
-        private Transform _eyesPosition;
+        private readonly LayerMask _obstacles;
+        private readonly float _viewLength;
+        private readonly float _fovAngle;
+        private readonly Transform _eyesPosition;
 
         public FieldOfView(LayerMask obstacles, float viewLength, float fovAngle, Transform eyesPosition)
         {
@@ -32,7 +32,7 @@ namespace Titan
                 if (collider.gameObject.TryGetComponent(out Maneuvering maneuvering))
                 {
                     Vector3 direction = maneuvering.transform.position - _eyesPosition.position;
-                    if (Vector3.Angle(direction, -_eyesPosition.forward) < _fovAngle)
+                    if (Vector3.Angle(direction, -_eyesPosition.forward) < _fovAngle/2)
                     {
                         Ray ray = new Ray(_eyesPosition.position, direction);
                         float distanceBetween =

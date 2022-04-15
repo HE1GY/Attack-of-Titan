@@ -6,13 +6,12 @@ namespace Titan
 {
     public class BodyTrigger : MonoBehaviour
     {
-        public event Action<Transform> PlayerNear;
-
+        public event Action<Transform> EnemyNear;
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Maneuvering maneuvering))
             {
-                PlayerNear?.Invoke(maneuvering.transform);
+                EnemyNear?.Invoke(maneuvering.transform);
             }
         }
     }
