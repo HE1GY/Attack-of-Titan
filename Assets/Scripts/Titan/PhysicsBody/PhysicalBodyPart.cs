@@ -19,7 +19,10 @@ namespace Titan
 
                 private void FixedUpdate()
                 {
-                        _configurable.targetRotation =Quaternion.Inverse(_target.localRotation)*_startRotation; 
+                        if (_configurable)
+                        {
+                                _configurable.targetRotation =Quaternion.Inverse(_target.localRotation)*_startRotation; 
+                        }
                 }
         }
 }
