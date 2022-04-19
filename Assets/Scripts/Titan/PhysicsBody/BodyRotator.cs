@@ -1,17 +1,17 @@
 using UnityEngine;
+using Zenject;
 
 namespace Titan.PhysicsBody
 {
     public class BodyRotator : MonoBehaviour
     {
-        private const float TurnSpeed = 0.0001f;
         public Transform Target { get; set; }
+        
+        private const float TurnSpeed = 0.00001f;
         private ConfigurableJoint _configurableJoint;
-
         private Quaternion _startRotation;
-
         private float _interpolationRatio;
-
+        
         private void Awake()
         {
             _configurableJoint = GetComponent<ConfigurableJoint>();
