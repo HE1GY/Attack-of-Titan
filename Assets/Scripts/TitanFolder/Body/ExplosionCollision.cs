@@ -1,12 +1,8 @@
-using System;
-using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Titan.PhysicsBody
+namespace TitanFolder.Body
 {
-    public class ExplosionArea : MonoBehaviour
+    public class ExplosionCollision : MonoBehaviour
     {
         private const int DestroyTime = 3;
         private const int ExplosionRadius = 5;

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Titan.PhysicsBody
+namespace TitanFolder.Body
 {
     public class SteamForce : MonoBehaviour
     {

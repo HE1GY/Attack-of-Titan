@@ -9,22 +9,22 @@ namespace UI
     {
         [SerializeField] private InputScrollView _inputScrollView;
         
-        private ITitanFactory _titanFactory;
+        private ITitanSpawner _titanSpawner;
 
         [Inject]
-        public void  Construct(ITitanFactory titanFactory)
+        public void  Construct(ITitanSpawner titanSpawner)
         {
-            _titanFactory = titanFactory;
+            _titanSpawner = titanSpawner;
         }
 
         private void OnEnable()
         {
-            _inputScrollView.Spawn += _titanFactory.SpawnTitan;
+            _inputScrollView.Spawn += _titanSpawner.SpawnTitan;
         }
 
         private void OnDisable()
         {
-            _inputScrollView.Spawn -= _titanFactory.SpawnTitan;
+            _inputScrollView.Spawn -= _titanSpawner.SpawnTitan;
         }
     }
 }

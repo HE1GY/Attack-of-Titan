@@ -1,6 +1,7 @@
-﻿using Titan.States;
+﻿using Titan;
+using Titan.States;
 
-namespace Titan
+namespace TitanFolder.Body
 {
     public class BodyScanner
     {

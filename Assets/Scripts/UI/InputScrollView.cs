@@ -13,15 +13,25 @@ namespace UI
         [SerializeField] private RectTransform _content;
         [SerializeField] private float _speed;
         [SerializeField] private Button _buttonSpawn;
+
        
         private float _currentX;
         private int _currentIndex;
 
         private void Awake()
         {
-            _currentIndex = 0;
-            _currentX = _positionX[_currentIndex];
-            Transition(_currentX);
+            _currentIndex = 4;
+        }
+
+        private void OnEnable()
+        {
+
+            _buttonSpawn.onClick.AddListener(()=>Spawn?.Invoke(GetNumber()));
+        }
+
+        private void OnDisable()
+        {
+            _buttonSpawn.onClick.RemoveListener(()=>Spawn?.Invoke(GetNumber()));
         }
 
         public void Minus()
@@ -82,5 +92,11 @@ namespace UI
                 await Task.Yield();
             }
         }
+
+        private int GetNumber()
+        {
+            return _currentIndex+1;
+        }
+        
     }
 }

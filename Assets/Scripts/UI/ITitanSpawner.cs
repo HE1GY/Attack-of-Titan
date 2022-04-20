@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    public interface ITitanFactory
+    public interface ITitanSpawner
     {
         void SpawnTitan(int count);
     }

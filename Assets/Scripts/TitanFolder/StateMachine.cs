@@ -5,7 +5,7 @@ using Titan.States;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-namespace Titan
+namespace TitanFolder
 {
     public  class StateMachine
     {

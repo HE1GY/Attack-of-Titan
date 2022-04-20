@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Titan
+namespace TitanFolder
 {
     public class TitanAnimation
     {
         private const float NormalizedTransitionDuration = 0.5f;
-        private const int LayerIndex = 0;
         private readonly TitanAnimationHash _titanAnimationHash=new TitanAnimationHash();
         private readonly Animator _animator;
 

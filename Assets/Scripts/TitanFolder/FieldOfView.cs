@@ -2,7 +2,7 @@
 using Player;
 using UnityEngine;
 
-namespace Titan
+namespace TitanFolder
 {
     public class FieldOfView
     {

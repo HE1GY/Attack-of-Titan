@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Titan
+namespace TitanFolder
 {
     public class TitanAnimationHash
     {

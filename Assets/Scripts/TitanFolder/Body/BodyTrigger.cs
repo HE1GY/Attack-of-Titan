@@ -2,7 +2,7 @@ using System;
 using Player;
 using UnityEngine;
 
-namespace Titan
+namespace TitanFolder.Body
 {
     public class BodyTrigger : MonoBehaviour
     {

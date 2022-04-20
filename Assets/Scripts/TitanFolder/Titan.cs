@@ -1,10 +1,11 @@
-﻿using Titan.PhysicsBody;
+﻿using Titan;
+using Titan.PhysicsBody;
+using TitanFolder.Body;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Serialization;
+using Zenject;
 
-
-namespace Titan
+namespace TitanFolder
 {
     public class Titan:MonoBehaviour
     {
@@ -45,5 +46,8 @@ namespace Titan
         {
             _titanStateMachine.UpdateState();
         }
+
+        public class Factory:PlaceholderFactory<Titan>{}
+        
     }
 }
