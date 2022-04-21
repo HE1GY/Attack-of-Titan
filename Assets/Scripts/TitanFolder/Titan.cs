@@ -31,14 +31,14 @@ namespace TitanFolder
         private StateMachine _titanStateMachine;
         private TitanAnimation _titanAnimation;
         private FieldOfView _fieldOfView;
-        private BodyScanner _bodyScanner;
+        private AttackScanner _attackScanner;
 
         private void Awake()
         {
             _titanAnimation = new TitanAnimation(_animator);
             _fieldOfView = new FieldOfView(_obstacles, _viewLength, _fovAngle, _eyesPosition);
             _titanStateMachine = new StateMachine(_titanAnimation,_fieldOfView,_bodyRotator,_handRig);
-            _bodyScanner = new BodyScanner(_legsScanner, _handsScanner, _shoulderScanner,_titanStateMachine);
+            _attackScanner = new AttackScanner(_legsScanner, _handsScanner, _shoulderScanner,_titanStateMachine);
         }
 
 

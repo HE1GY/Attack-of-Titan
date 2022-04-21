@@ -5,9 +5,9 @@ using Zenject;
 
 public class MonoPool<T> where T:MonoBehaviour
 {
-    private int _capacity;
-    private Transform _parent;
-    private PlaceholderFactory<T> _factory;
+    private readonly int _capacity;
+    private readonly Transform _parent;
+    private readonly PlaceholderFactory<T> _factory;
 
     private List<T> _pool;
 
@@ -38,19 +38,18 @@ public class MonoPool<T> where T:MonoBehaviour
     {
         if (TryGetUnActiveObject(out T element))
         {
+            element.gameObject.SetActive(true);
             return element;
         }
-        else
-        {
-            return GetExtraElement();
-        }
-        
+
+        return GetExtraElement();
+
     }
 
 
     private bool TryGetUnActiveObject(out T element)
     {
-        T unActiveelement = _pool.FirstOrDefault(element => element.gameObject.activeSelf == true);
+        T unActiveelement = _pool.FirstOrDefault(monoBehaviour => monoBehaviour.gameObject.activeSelf == false);
 
         if (unActiveelement != null)
         {
@@ -65,6 +64,7 @@ public class MonoPool<T> where T:MonoBehaviour
     private T GetExtraElement()
     {
          T extraElement=_factory.Create();
+         extraElement.gameObject.SetActive(true);
          _pool.Add(extraElement);
          return extraElement;
     }

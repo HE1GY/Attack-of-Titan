@@ -21,7 +21,8 @@ namespace Titan
                 {
                         if (_configurable)
                         {
-                                _configurable.targetRotation =Quaternion.Inverse(_target.localRotation)*_startRotation; 
+                                _configurable.targetRotation =
+                                        Quaternion.Inverse(_target.localRotation) * _startRotation;
                         }
                 }
         }

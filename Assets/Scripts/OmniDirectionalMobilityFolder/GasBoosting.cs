@@ -4,7 +4,7 @@ namespace OmniDirectionalMobilityFolder
 {
     public class GasBoosting
     {
-        private const float BoostVelocity = 25f;
+        private const float BoostVelocity = 15f;
         private Rigidbody _rigidbody;
         private Transform _camTrasform;
 

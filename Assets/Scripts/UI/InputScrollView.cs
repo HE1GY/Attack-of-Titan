@@ -20,7 +20,8 @@ namespace UI
 
         private void Awake()
         {
-            _currentIndex = 4;
+            _currentIndex = 0;
+            _currentX = _positionX[_currentIndex];
         }
 
         private void OnEnable()

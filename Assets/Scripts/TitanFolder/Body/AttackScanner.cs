@@ -3,9 +3,9 @@ using Titan.States;
 
 namespace TitanFolder.Body
 {
-    public class BodyScanner
+    public class AttackScanner
     {
-        public BodyScanner(BodyTrigger legsScanner, BodyTrigger handsScanner, BodyTrigger shoulderScanner, StateMachine stateMachine)
+        public AttackScanner(BodyTrigger legsScanner, BodyTrigger handsScanner, BodyTrigger shoulderScanner, StateMachine stateMachine)
         {
             legsScanner.EnemyNear += _ => stateMachine.EnterState<AttackState>();
             handsScanner.EnemyNear += stateMachine.EnterState<AttackState>;

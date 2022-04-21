@@ -6,7 +6,7 @@ namespace TitanFolder.Body
     {
         private const int DestroyTime = 3;
         private const int ExplosionRadius = 5;
-        private const float ExplosionScaler=25;
+        private const float ExplosionScaler=50;
 
         [SerializeField] private ParticleSystem _explosionEffect;
         [SerializeField] private LayerMask _exclusionMask;

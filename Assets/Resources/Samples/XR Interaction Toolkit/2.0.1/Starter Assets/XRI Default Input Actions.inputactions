@@ -737,6 +737,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AButton",
+                    "type": "Button",
+                    "id": "eab4f367-69b0-44cb-aa36-84bfac390fc5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -924,6 +933,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ThumbPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b20416a4-953a-45ee-b5f0-b33f5d5b99ba",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
