@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Titan.PhysicsBody
+namespace TitanFolder.PhysicsBody
 {
     public class ColliderCollision : MonoBehaviour
     {

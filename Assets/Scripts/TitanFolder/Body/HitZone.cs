@@ -1,26 +1,25 @@
 using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Object = UnityEngine.Object;
 
 namespace TitanFolder.Body
 {
     public class HitZone : XRSocketInteractor
     {
+        public event Action<ConfigurableJoint> Hit;
+
         [Header("HIT ZONE")]
         [SerializeField] private ConfigurableJoint _configurableJoint;
+        
+        public ConfigurableJoint CurrentJoint { get=>_configurableJoint; set=>_configurableJoint=value;}
+
         [SerializeField] private float _strength;
         [SerializeField] private ParticleSystem _hitEffect;
-
-        private ConfigurableJoint _nextConfigurableJoint;
-        private GameObject _jointHolder;// копіюй компонент
-    
-        public event Action Hit;
         
+
 
         protected override void Start()
         {
-            _nextConfigurableJoint = new ConfigurableJoint();
             allowSelect = false;
             base.Start();
         }
@@ -38,9 +37,9 @@ namespace TitanFolder.Body
         {
             base.OnHoverEntered(args);
             
+            Hit?.Invoke(_configurableJoint);
             OnBladeEnter();
             _hitEffect.Play();
-            Hit?.Invoke();
         }
         
     }

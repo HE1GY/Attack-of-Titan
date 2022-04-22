@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Titan
+namespace TitanFolder.PhysicsBody
 {
         [RequireComponent(typeof(ConfigurableJoint))]
         public class PhysicalBodyPart : MonoBehaviour

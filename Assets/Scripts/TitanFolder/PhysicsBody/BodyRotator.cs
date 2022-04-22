@@ -1,7 +1,6 @@
 using UnityEngine;
-using Zenject;
 
-namespace Titan.PhysicsBody
+namespace TitanFolder.PhysicsBody
 {
     public class BodyRotator : MonoBehaviour
     {

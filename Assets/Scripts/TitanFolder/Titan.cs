@@ -1,6 +1,5 @@
-﻿using Titan;
-using Titan.PhysicsBody;
-using TitanFolder.Body;
+﻿using TitanFolder.Body;
+using TitanFolder.PhysicsBody;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Zenject;

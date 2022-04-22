@@ -11,6 +11,7 @@ namespace TitanFolder.Body
 
         [SerializeField]private Transform[] _parents;
         
+        
 
         private void OnEnable()
         {
@@ -23,17 +24,18 @@ namespace TitanFolder.Body
         }
 
 
-        private async void Death()
+        private async void Death(ConfigurableJoint configurableJoint)
         {
             await DelayDeath();
         }
 
         private async  Task DelayDeath()
         {
-            await Task.Delay((int)_delay*1000/2);
+            await Task.Delay((int)_delay/2*1000);
             _deathEffect.Play();
             
-            await Task.Delay((int)_delay*1000/2);
+            await Task.Delay((int)_delay/2*1000);
+            
             foreach (var parent in _parents)
             {
                 parent.gameObject.SetActive(false);

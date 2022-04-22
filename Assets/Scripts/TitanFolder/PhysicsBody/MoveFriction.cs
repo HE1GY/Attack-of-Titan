@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Titan
+namespace TitanFolder.PhysicsBody
 {
     public class MoveFriction : MonoBehaviour
     {

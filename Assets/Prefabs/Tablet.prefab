@@ -1441,7 +1441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255, y: 0}
+  m_AnchoredPosition: {x: 258, y: 0}
   m_SizeDelta: {x: 641.51996, y: 69.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7750826937648058118
@@ -1484,6 +1484,8 @@ GameObject:
   - component: {fileID: 7750826937648760262}
   - component: {fileID: 7750826937648760266}
   - component: {fileID: 7750826937648760267}
+  - component: {fileID: 1182674794}
+  - component: {fileID: 1182674795}
   m_Layer: 5
   m_Name: Tablet
   m_TagString: Untagged
@@ -1606,6 +1608,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputScrollView: {fileID: 7750826938156883428}
+  _animator: {fileID: 1182674795}
+  _tunOffTurnOn: {fileID: 7076523600087792645, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!1773428102 &1182674794
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750826937648760257}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 87.71941, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: -0.024999619, y: 0.065999985, z: 0.9390011}
+  m_RotationOffsets:
+  - {x: 57.489635, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
+--- !u!95 &1182674795
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750826937648760257}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1eef5e74070685647869e6bd7cfb448f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7750826937650741628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1842,6 @@ GameObject:
   - component: {fileID: 7750826937785095151}
   - component: {fileID: 7750826937785095150}
   - component: {fileID: 7750826937785095145}
-  - component: {fileID: 7750826937785095149}
   m_Layer: 5
   m_Name: Base
   m_TagString: Untagged
@@ -1884,25 +1932,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1818360608 &7750826937785095149
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750826937785095144}
-  m_Enabled: 1
-  m_Weight: 1
-  m_TranslationAtRest: {x: 275, y: -113, z: -114}
-  m_TranslationOffset: {x: 275, y: -113, z: -114}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_IsContraintActive: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 7750826937648760261}
-    weight: 1
 --- !u!1 &7750826937800301188
 GameObject:
   m_ObjectHideFlags: 0

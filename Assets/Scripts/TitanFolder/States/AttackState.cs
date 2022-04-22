@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TitanFolder;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.InputSystem.Interactions;
 
-namespace Titan.States
+namespace TitanFolder.States
 {
     public class AttackState:ITargetableState
     {

@@ -1,7 +1,6 @@
-﻿using TitanFolder;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Titan.States
+namespace TitanFolder.States
 {
     class SleepingState : IState
     {

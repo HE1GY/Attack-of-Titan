@@ -22,7 +22,7 @@ namespace TitanFolder.Body
         {
             foreach (var contact in collision.contacts)
             {
-                GameObject particle=  Instantiate(_explosionEffect.gameObject, contact.point, Quaternion.identity);
+                GameObject particle=  Instantiate(_explosionEffect.gameObject, contact.point, Quaternion.identity,transform);
                 MakeBoom(contact.point);
                 Destroy(particle,DestroyTime);
             }

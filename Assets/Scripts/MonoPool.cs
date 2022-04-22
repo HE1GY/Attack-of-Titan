@@ -64,7 +64,9 @@ public class MonoPool<T> where T:MonoBehaviour
     private T GetExtraElement()
     {
          T extraElement=_factory.Create();
+         extraElement.gameObject.transform.SetParent(_parent);
          extraElement.gameObject.SetActive(true);
+         
          _pool.Add(extraElement);
          return extraElement;
     }

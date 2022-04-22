@@ -8,21 +8,23 @@ namespace TitanFolder
     public class TitanSpawner:MonoBehaviour,ITitanSpawner
     {
         [SerializeField] private List<Transform> _spawnPoints;
-        [SerializeField] private int _count=5;
+        /*[SerializeField] private int _count=5;*/
         
-        private MonoPool<Titan> _titanPool;
+        /*private MonoPool<Titan> _titanPool;*/
+        private Titan.Factory _titanFactory;
 
         [Inject]
         public void Constructor(Titan.Factory titanFactory)
         {
-            _titanPool = new MonoPool<Titan>(_count, gameObject.transform, titanFactory);
+            /*_titanPool = new MonoPool<Titan>(_count, gameObject.transform, titanFactory);*/
+            _titanFactory = titanFactory;
         }
 
         public void SpawnTitan(int count)
         {
             for (int i = 0; i < count; i++)
             {
-                Titan titan= _titanPool.GetElement();
+                Titan titan= _titanFactory.Create();
                 titan.transform.position =GetRandomSpawnPosition();
             }
         }

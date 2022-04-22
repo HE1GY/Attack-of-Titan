@@ -84,6 +84,7 @@ MonoBehaviour:
   - {fileID: 2132042292345714966}
   - {fileID: 6144339982500627054}
   - {fileID: 3783347001655934888}
+  _count: 1
 --- !u!1 &2319571585265665776
 GameObject:
   m_ObjectHideFlags: 0

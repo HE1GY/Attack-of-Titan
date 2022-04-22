@@ -1,29 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-
-    [SerializeField] private Animator _animator;
-
     private void Start()
     {
-        Waiter();
-        print("Hello");
+        /*print(transform.childCount);*/
+        AllChildrenActivation(transform);
     }
 
-
-    private async void Waiter()
+    private void AllChildrenActivation(Transform transform1)
     {
-        await StopAnimation();
-        _animator.StartPlayback();
-    } 
-
-    private async Task StopAnimation()
-    {
-        await Task.Delay(5000);
+        var count =transform1.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            Transform childTransform=  transform1.GetChild(i).transform;
+            
+            if (childTransform.childCount>0)
+            {
+                AllChildrenActivation(childTransform);
+            }
+            childTransform.gameObject.SetActive(true);
+        }
     }
 }

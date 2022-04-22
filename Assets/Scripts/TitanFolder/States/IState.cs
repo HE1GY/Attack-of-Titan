@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Titan.States
+namespace TitanFolder.States
 {
     public interface IState
     {

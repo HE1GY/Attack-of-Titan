@@ -1,8 +1,7 @@
-﻿using Titan.PhysicsBody;
-using TitanFolder;
+﻿using TitanFolder.PhysicsBody;
 using UnityEngine;
 
-namespace Titan.States
+namespace TitanFolder.States
 {
     class ChaseState : ITargetableState
     {

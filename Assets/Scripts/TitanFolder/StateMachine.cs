@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Titan.PhysicsBody;
-using Titan.States;
+using TitanFolder.PhysicsBody;
+using TitanFolder.States;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -13,7 +13,7 @@ namespace TitanFolder
         private readonly FieldOfView _fieldOfView;
         private readonly BodyRotator _bodyRotator;
         private readonly Rig _hadRig;
-        
+
         private Dictionary<Type, IState> _states;
         private IState _currentState;
 
