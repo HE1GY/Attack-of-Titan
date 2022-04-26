@@ -15,16 +15,16 @@ namespace TitanFolder.Body
 
         private void OnEnable()
         {
-            _hitZone.Hit += Death;
+            _hitZone.DestroyPart += Death;
         }
 
         private void OnDisable()
         {
-            _hitZone.Hit -= Death;
+            _hitZone.DestroyPart -= Death;
         }
 
 
-        private async void Death(ConfigurableJoint configurableJoint)
+        private async void Death()
         {
             await DelayDeath();
         }

@@ -253,7 +253,7 @@ FixedJoint:
   m_GameObject: {fileID: 5433293310196080829}
   m_ConnectedBody: {fileID: 5327090409230565191}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -371,7 +371,7 @@ FixedJoint:
   m_GameObject: {fileID: 2290101906894122368}
   m_ConnectedBody: {fileID: 5327090409412738920}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -489,7 +489,7 @@ FixedJoint:
   m_GameObject: {fileID: 2290101908760290386}
   m_ConnectedBody: {fileID: 5327090408458710440}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -607,7 +607,7 @@ FixedJoint:
   m_GameObject: {fileID: 5433293311423031143}
   m_ConnectedBody: {fileID: 5327090408696583579}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -725,7 +725,7 @@ FixedJoint:
   m_GameObject: {fileID: 2290101908069276591}
   m_ConnectedBody: {fileID: 5327090408476741920}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -843,7 +843,7 @@ FixedJoint:
   m_GameObject: {fileID: 5433293310974959719}
   m_ConnectedBody: {fileID: 5327090409895873191}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -961,7 +961,7 @@ FixedJoint:
   m_GameObject: {fileID: 2290101908422204326}
   m_ConnectedBody: {fileID: 5327090409520072911}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 500
+  m_BreakForce: 1000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1

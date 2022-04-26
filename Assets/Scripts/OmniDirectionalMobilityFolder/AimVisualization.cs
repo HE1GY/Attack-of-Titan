@@ -9,7 +9,7 @@ namespace OmniDirectionalMobilityFolder
         private const int ScaleFactor = 2;
 
         [SerializeField] private Transform _shootPoint;
-        [SerializeField]private LayerMask _layerMask;
+        [SerializeField] private LayerMask _layerMask;
         [SerializeField] private Transform _visual;
 
 
@@ -19,12 +19,13 @@ namespace OmniDirectionalMobilityFolder
         {
             _isShowing = isShowing;
         }
+
         private void Update()
         {
             if (_isShowing)
             {
-                Vector3 rayOrg=_shootPoint.position;
-                Vector3 rayDir=_shootPoint.forward;
+                Vector3 rayOrg = _shootPoint.position;
+                Vector3 rayDir = _shootPoint.forward;
                 Ray ray = new Ray(rayOrg, rayDir);
 
                 if (Physics.Raycast(ray, out RaycastHit raycastHit, Distance, _layerMask))
@@ -33,11 +34,11 @@ namespace OmniDirectionalMobilityFolder
                     {
                         TurnOnSight();
                     }
-               
-                    _visual.position = raycastHit.point+raycastHit.normal.normalized*Offset;
-                    _visual.forward = -raycastHit.normal;
+
+                    _visual.position = raycastHit.point /*+ raycastHit.normal.normalized *//** Offset*/;
+                    _visual.up = raycastHit.normal;
                     _visual.localScale =
-                        Vector3.Distance(transform.position, raycastHit.point) * _shootPoint.localScale*ScaleFactor;
+                        Vector3.Distance(transform.position, raycastHit.point) * _shootPoint.localScale * ScaleFactor;
                 }
                 else
                 {
@@ -53,17 +54,16 @@ namespace OmniDirectionalMobilityFolder
                 {
                     TurnOffSight();
                 }
-                
             }
-
         }
 
 
-        public void TurnOnSight()
+        private void TurnOnSight()
         {
             _visual.gameObject.SetActive(true);
         }
-        public void TurnOffSight()
+
+        private void TurnOffSight()
         {
             _visual.gameObject.SetActive(false);
         }

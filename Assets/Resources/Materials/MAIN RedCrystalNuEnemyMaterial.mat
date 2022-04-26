@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_Name: MAIN RedCrystalNuEnemyMaterial
+  m_Shader: {fileID: 4800000, guid: 77c4f23cc3c21144eb0d06d0d746053e, type: 3}
+  m_ShaderKeywords:
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: a8cec5ed01ffb444ebf5cd4c2b3d5d8f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientMap:
+        m_Texture: {fileID: 2800000, guid: 5baff469bd5cf5f4aa94ef6862a54c36, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AlbedoPower: 0.93
+    - _AllowLocalFog: 1
+    - _Alpha: 1
+    - _AlphaDecay: 0
+    - _AreaSpecularPower: 2.74
+    - _BScale: 0.9642857
+    - _Brightness: 0
+    - _ColorSwap: 0
+    - _ColorSwapFlag: 0
+    - _ColorSwitch: 0
+    - _Contrast: 0
+    - _Cutoff: 1
+    - _DarkReflectionPower: 1.33
+    - _Dead: 0
+    - _DeadPhase: 0
+    - _DiffusePower: 1
+    - _Distortion: 0
+    - _ExplosionReactivity: 0
+    - _FinalValueClamp: 100
+    - _Focus: 0
+    - _FocusScale: 1
+    - _FogDistance: 5
+    - _FogLength: 7
+    - _GScale: 0.9285714
+    - _GlobalScale: 1
+    - _GlobalVRLoadingProgress: 1
+    - _Gloss: 0.5178571
+    - _GlossValue: 0.5
+    - _HDRPhase: 0
+    - _HDRPhaseB: 0
+    - _HDRPhaseC: 0
+    - _HighlightRange: 2
+    - _HotswitchFocus: 0
+    - _Hue: 0
+    - _IsEnemy: 1
+    - _LightProbesPower: 2.142858
+    - _LightmapBrightness: 0
+    - _LightmapContrast: 0
+    - _LocalTime: 20
+    - _NormalPower: 1
+    - _Parallax: 0.02
+    - _Phase: 1
+    - _PrimaryRampColorAngle: 0.7321429
+    - _PrimaryRampPower: 0.05357144
+    - _PrimaryRimColorAngle: 0.6607143
+    - _PrimaryRimPower: 0.3214286
+    - _RScale: 0.8571427
+    - _RampAngle: 0.4642857
+    - _RampPower: 0.75
+    - _RampSize: 0
+    - _ReceivedLightPower: 0.978
+    - _ReflectionPower: 0
+    - _ReflectionRampAngle: 0.8571428
+    - _RimPower: 0.2857143
+    - _Saturation: 1
+    - _SecondaryRampColorAngle: 0.6964286
+    - _SecondaryRampPower: 0.1964286
+    - _Separator: 0
+    - _Shininess: 0.283
+    - _SpecularBrightness: 0
+    - _SpecularPower: 2.74
+    - _SpecularX: 1
+    - _SpecularY: 1
+    - _StripePotega: 5
+    - _StripePower: 1
+    - _StripeRotation: 1
+    - _StripeTexXTilingTileX: -1
+    - _StripeTexXTilingTileY: 1
+    - _StripeWidth: 0.5
+    - _SubMeshes: 9
+    - _SuperSpecularPower: 1.4
+    - _TimePreview: 0
+    - _TransDistortion: 0.1
+    - _TransPower: 4
+    - _TransScale: 2
+    - _UseAdditiveGradientMap: 0
+    - _UseGradientMap: 0
+    - _UseVertexScale: 0
+    - _VertexFloatPower: 0
+    - _VertexScale: 1
+    - _WhiteOnEightiesPass: 0
+    - _WhiteOnRedvisionPass: 1
+    m_Colors:
+    - _AlphaCenter: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.7205882, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.5220588, g: 0, b: 0, a: 1}
+    - _FogColor: {r: 0.6838235, g: 0, b: 0, a: 1}
+    - _HighlightColor: {r: 0.4044118, g: 0.3286974, b: 0.193285, a: 0}
+    - _MidtonesColor: {r: 0.9558824, g: 0.07028548, b: 0.7848703, a: 0}
+    - _PrimaryColorRamp: {r: 1, g: 0, b: 0, a: 0}
+    - _PrimaryRampColor: {r: 1, g: 0, b: 0, a: 0}
+    - _PrimaryRimColor: {r: 0.1470588, g: 0, b: 0, a: 0}
+    - _RampColor: {r: 1, g: 0.1448276, b: 0, a: 0}
+    - _SecondaryColorRamp: {r: 1, g: 0.8379312, b: 0, a: 0}
+    - _SecondaryRampColor: {r: 1, g: 0, b: 0.4344826, a: 0}
+    - _ShadowColor: {r: 0.1331136, g: 0, b: 0.5514706, a: 0}
+    - _SpecColor: {r: 1, g: 0.1862069, b: 0, a: 1}
+    - _StripeFocusBackground: {r: 0.2647059, g: 0, b: 0, a: 0}
+    - _StripeFocusColor: {r: 1, g: 0, b: 0, a: 1}
+    - _SuperSpecColor: {r: 1, g: 0.5586206, b: 0, a: 1}

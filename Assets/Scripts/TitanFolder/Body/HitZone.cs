@@ -6,12 +6,12 @@ namespace TitanFolder.Body
 {
     public class HitZone : XRSocketInteractor
     {
-        public event Action<ConfigurableJoint> Hit;
+        public event Action DestroyPart;
 
         [Header("HIT ZONE")]
         [SerializeField] private ConfigurableJoint _configurableJoint;
         
-        public ConfigurableJoint CurrentJoint { get=>_configurableJoint; set=>_configurableJoint=value;}
+        /*public ConfigurableJoint CurrentJoint { get=>_configurableJoint; set=>_configurableJoint=value;}*/ //for pool
 
         [SerializeField] private float _strength;
         [SerializeField] private ParticleSystem _hitEffect;
@@ -30,15 +30,14 @@ namespace TitanFolder.Body
             if (_strength <= 0&& _configurableJoint)
             {
                 _configurableJoint.breakForce = 0;
+                DestroyPart?.Invoke();
             }
         }
 
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
             base.OnHoverEntered(args);
-            
-            Hit?.Invoke(_configurableJoint);
-            OnBladeEnter();
+            OnBladeEnter( );
             _hitEffect.Play();
         }
         

@@ -59,7 +59,7 @@ namespace Player
             {
                 _leftGrappler.Raising();
             }
-            else if (_rightRising)
+            if (_rightRising)
             {
                 _rightGrappler.Raising();
             }
@@ -68,10 +68,10 @@ namespace Player
 
         private void InteractionSubscribing()
         {
-            _leftRopeRaising.action.started += ctx => _leftRising = ctx.ReadValueAsButton();
-            _leftRopeRaising.action.canceled += ctx => _leftRising = ctx.ReadValueAsButton();
-            _rightRopeRaising.action.started += ctx => _rightRising = ctx.ReadValueAsButton();
-            _rightRopeRaising.action.canceled += ctx => _rightRising = ctx.ReadValueAsButton();
+            _leftRopeRaising.action.started += ctx => _leftRising = true;
+            _leftRopeRaising.action.canceled += ctx => _leftRising = false;
+            _rightRopeRaising.action.started += ctx => _rightRising = true;
+            _rightRopeRaising.action.canceled += ctx => _rightRising = false;
             
             _boostAction.action.started +=ctx=>
             {
