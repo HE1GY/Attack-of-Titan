@@ -1847,10 +1847,11 @@ MonoBehaviour:
   _leftRopeRaising: {fileID: 1542948816076209699, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightRopeRaising: {fileID: 2200832573951574248, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _continuousMove: {fileID: 3222899903065596197}
-  _leftHand: {fileID: 3222899902882017397}
-  _rightHand: {fileID: 3222899902048542177}
+  _leftHand: {fileID: 0}
+  _rightHand: {fileID: 0}
   _camTransform: {fileID: 3222899903173390389}
   _boostAction: {fileID: -2156342467310163953, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rigidbody: {fileID: 0}
 --- !u!114 &3222899902705433753
 MonoBehaviour:
   m_ObjectHideFlags: 0

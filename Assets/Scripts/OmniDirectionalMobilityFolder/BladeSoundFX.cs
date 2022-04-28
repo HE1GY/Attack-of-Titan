@@ -1,8 +1,6 @@
-using System;
-using OmniDirectionalMobilityFolder;
 using UnityEngine;
 
-namespace Common
+namespace OmniDirectionalMobilityFolder
 {
     [RequireComponent(typeof(AudioSource))]
     public class BladeSoundFX : MonoBehaviour

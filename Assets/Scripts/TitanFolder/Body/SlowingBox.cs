@@ -1,6 +1,7 @@
 using System;
 using Player;
 using TimeService;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +21,7 @@ namespace TitanFolder.Body
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Maneuvering maneuvering))
+            if (other.TryGetComponent(out XROrigin xrOrigin))
             {
                 _timeService.SlowDownTo(_slowDownTo);
                 _timeService.ReturnToDefault(_returningTime);

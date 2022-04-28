@@ -34,10 +34,10 @@ namespace TitanFolder.Body
             }
         }
 
-        protected override void OnHoverEntered(HoverEnterEventArgs args)
+        protected override void OnHoverEntered(HoverEnterEventArgs args)// blade mask
         {
             base.OnHoverEntered(args);
-            OnBladeEnter( );
+            OnBladeEnter();
             _hitEffect.Play();
         }
         

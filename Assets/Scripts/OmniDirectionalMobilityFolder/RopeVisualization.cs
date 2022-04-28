@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 
 namespace OmniDirectionalMobilityFolder
 {
     public class RopeVisualization: MonoBehaviour
     {
+
         public bool IsGrappling { get; set; }
         
         [SerializeField]private LineRenderer _lineRenderer;
@@ -30,6 +32,11 @@ namespace OmniDirectionalMobilityFolder
             _springJoint = springJoint;
         }
 
+        public void SetShootPoint(Transform shootPoint)
+        {
+            _shootPoint = shootPoint;
+        }
+
         public void Awake()
         {
             _visualizationSpring = new VisualizationSpring();
@@ -49,58 +56,49 @@ namespace OmniDirectionalMobilityFolder
                 {
                     _grapplePoint = _springJoint.connectedAnchor;
                 }
-               
             }
-            
             if (_shootPoint)
             {
                 DrawRope();
             }
         }
 
-      private  void DrawRope()
+        private  void DrawRope()
       {
           if (IsGrappling)
-            {
-                if (_lineRenderer.positionCount==0) {
-                    _visualizationSpring.SetVelocity(Velocity);
-                    _lineRenderer.positionCount = Quality + 1;
-                    _currentGrapplePosition = _shootPoint.position;
-                }
+          {
+              if (_lineRenderer.positionCount==0) {
+                  _visualizationSpring.SetVelocity(Velocity);
+                  _lineRenderer.positionCount = Quality + 1;
+                  _currentGrapplePosition = _shootPoint.position;
+              }
 
-                _visualizationSpring.SetDamper(Damper);
-                _visualizationSpring.SetStrength(Strength);
-                _visualizationSpring.Update(Time.deltaTime);
+              _visualizationSpring.SetDamper(Damper);
+              _visualizationSpring.SetStrength(Strength);
+              _visualizationSpring.Update(Time.deltaTime);
 
-                var grapplePoint = _grapplePoint;
-                var gunTipPosition =  _shootPoint.position;
-                var up = Quaternion.LookRotation((grapplePoint - gunTipPosition).normalized) * Vector3.up;
+              var grapplePoint = _grapplePoint;
+              var gunTipPosition =  _shootPoint.position;
+              var up = Quaternion.LookRotation((grapplePoint - gunTipPosition).normalized) * Vector3.up;
 
-                _currentGrapplePosition = Vector3.Lerp(_currentGrapplePosition, grapplePoint, Time.deltaTime * LerpSpeed);
+              _currentGrapplePosition = Vector3.Lerp(_currentGrapplePosition, grapplePoint, Time.deltaTime * LerpSpeed);
 
-                for (var i = 0; i < Quality +1; i++) {
-                    var delta = i / (float) Quality;
-                    var offset = up * WaveHeight * Mathf.Sin(delta * WaveCount * Mathf.PI) * _visualizationSpring.Value *
-                                 _affectCurve.Evaluate(delta);
+              for (var i = 0; i < Quality +1; i++) {
+                  var delta = i / (float) Quality;
+                  var offset = up * WaveHeight * Mathf.Sin(delta * WaveCount * Mathf.PI) * _visualizationSpring.Value *
+                               _affectCurve.Evaluate(delta);
                     
-                    _lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, _currentGrapplePosition, delta) + offset);
-                }
+                  _lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, _currentGrapplePosition, delta) + offset);
+              }
                 
-                
-            }
-            else
-            {
-                _currentGrapplePosition = _shootPoint.position;
-                _visualizationSpring.Reset();
-                if (_lineRenderer.positionCount > 0)
-                    _lineRenderer.positionCount = 0;
-            }
+          }
+          else
+          {
+              _currentGrapplePosition = _shootPoint.position;
+              _visualizationSpring.Reset();
+              if (_lineRenderer.positionCount > 0)
+                  _lineRenderer.positionCount = 0;
+          }
       }
-
-      public void SetShootPoint(Transform shootPoint)
-      {
-          _shootPoint = shootPoint;
-      }
-
     }
 }

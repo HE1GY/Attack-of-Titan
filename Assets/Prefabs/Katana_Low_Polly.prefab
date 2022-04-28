@@ -5457,10 +5457,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8244366459559244358}
   - component: {fileID: 3618147410207297111}
-  - component: {fileID: 6642109848888760774}
   - component: {fileID: 387034372}
-  - component: {fileID: 748564944}
-  - component: {fileID: 748564948}
+  - component: {fileID: 304504879}
+  - component: {fileID: 304504880}
   m_Layer: 6
   m_Name: Katana_Low_Polly
   m_TagString: Untagged
@@ -5505,7 +5504,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6642109848888760774
+--- !u!114 &387034372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5514,7 +5513,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 6284650853273277279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268b3536199f5c24589f8d991b1448e5, type: 3}
+  m_Script: {fileID: 11500000, guid: a31aaf964a7227946b39ba5a8ca19754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootPoint: {fileID: 90024378}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 384
+  _visual: {fileID: 3598884004262912397}
+--- !u!114 &304504879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284650853273277279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27a32ff7d4d42ef95980f079f96f1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootPoint: {fileID: 90024378}
+--- !u!114 &304504880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284650853273277279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -5550,44 +5579,17 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 387034372}
-        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.AimVisualization,
-          Assembly-CSharp
-        m_MethodName: SetIsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 387034372}
-        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.AimVisualization,
-          Assembly-CSharp
-        m_MethodName: SetIsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387034372}
-        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.AimVisualization,
-          Assembly-CSharp
-        m_MethodName: SetIsShowing
-        m_Mode: 6
+      - m_Target: {fileID: 304504879}
+        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.Blade, Assembly-CSharp
+        m_MethodName: Hook
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5599,18 +5601,17 @@ MonoBehaviour:
   m_Deactivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387034372}
-        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.AimVisualization,
-          Assembly-CSharp
-        m_MethodName: SetIsShowing
-        m_Mode: 6
+      - m_Target: {fileID: 304504879}
+        m_TargetAssemblyTypeName: OmniDirectionalMobilityFolder.Blade, Assembly-CSharp
+        m_MethodName: UnHook
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   m_OnFirstHoverEntered:
     m_PersistentCalls:
@@ -5642,9 +5643,9 @@ MonoBehaviour:
   m_AttachTransform: {fileID: 385725530}
   m_AttachEaseInTime: 0.15
   m_MovementType: 2
-  m_VelocityDamping: 0
+  m_VelocityDamping: 1
   m_VelocityScale: 1
-  m_AngularVelocityDamping: 0
+  m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
   m_SmoothPosition: 0
@@ -5676,134 +5677,6 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
-  _shootPoint: {fileID: 90024378}
---- !u!114 &387034372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6284650853273277279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31aaf964a7227946b39ba5a8ca19754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shootPoint: {fileID: 90024378}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 384
-  _visual: {fileID: 3598884004262912397}
---- !u!82 &748564944
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6284650853273277279}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 05e7e2ccec65bcd4ca357389a5fcc4b8, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 256
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &748564948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6284650853273277279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf4d97c587cfa448a80e6e6b3838444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitSFX: {fileID: 8300000, guid: 05e7e2ccec65bcd4ca357389a5fcc4b8, type: 3}
-  _bladeInteractable: {fileID: 6642109848888760774}
 --- !u!1 &6357872092643326548
 GameObject:
   m_ObjectHideFlags: 0

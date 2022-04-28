@@ -4,6 +4,9 @@ namespace OmniDirectionalMobilityFolder
 {
     public class GrapplerGun
     {
+        public bool IsHooked { get; private set; }
+        public SpringJoint Spring { get=>_springJoint;}
+
         private const float MaxDistance=100;
         private const int RiseDistance = 1;
         private const int RaiseSpeed = 15;
@@ -15,25 +18,23 @@ namespace OmniDirectionalMobilityFolder
 
         private  Transform _shootPoint;
         private  SpringJoint _springJoint;
-        private RopeVisualization _ropeVisualization;
 
 
-        public GrapplerGun( LayerMask layerMask, GameObject player,RopeVisualization ropeVisualization)
+        public GrapplerGun( LayerMask layerMask, GameObject player)
         {
             _layerMask = layerMask;
             _player = player;
-
-            _ropeVisualization =ropeVisualization ;
         }
 
         public void StartGrappling(Transform shootPointTransform)
         {
+            IsHooked = true;
             _shootPoint = shootPointTransform;
             if (_springJoint == null)
             {
                 _springJoint=_player.AddComponent<SpringJoint>();
             }
-
+            
             if (TryGetTargetRaycastHit(out RaycastHit targetRaycastHit))
             {
                 _springJoint.autoConfigureConnectedAnchor = false;
@@ -52,23 +53,20 @@ namespace OmniDirectionalMobilityFolder
                 _springJoint.spring = SpringJointSpring;
                 _springJoint.breakForce = 100;
                 _springJoint.breakTorque = 100;
-
-                _ropeVisualization.SetSprintJoint(_springJoint);
-                _ropeVisualization.IsGrappling = true;
             }
         }
 
         public void StopGrappling()
         {
+            IsHooked = false;
             if (_springJoint)
             {
                 _springJoint.maxDistance = Mathf.Infinity;
                 _springJoint.connectedBody = null;
             }
-            _ropeVisualization.IsGrappling = false;
         }
 
-        public void Raising()
+        public void Rising()
         {
             if (_shootPoint && Vector3.Distance(_springJoint.connectedAnchor, _shootPoint.position) > RiseDistance)
             {
