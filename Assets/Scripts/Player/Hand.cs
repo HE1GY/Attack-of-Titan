@@ -8,7 +8,7 @@ namespace Player
     [RequireComponent(typeof(XRDirectInteractor))]
     public class Hand : MonoBehaviour
     {
-        public event Action<IHookableWaepon> TakeWeapon;
+        public event Action<IHookableWeapon> TakeWeapon;
         public event Action DropItem;
         
         public void Grab(SelectEnterEventArgs args)
@@ -24,7 +24,7 @@ namespace Player
         
         private void Taking(GameObject gameObject)
         {
-            if (gameObject.TryGetComponent(out IHookableWaepon waepon))
+            if (gameObject.TryGetComponent(out IHookableWeapon waepon))
             {
                 TakeWeapon?.Invoke(waepon);
             }

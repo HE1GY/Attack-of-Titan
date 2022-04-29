@@ -1,18 +1,22 @@
 ﻿using System;
-using OmniDirectionalMobilityFolder;
+using OmniDirectionalMobilityFolder.Visualization;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Player
+namespace OmniDirectionalMobilityFolder
 {
     public class Maneuvering : MonoBehaviour
     {
         /*public event Action<Vector3> Hooked;
         public event Action HookFire;*/
+        public event Action Boost;
+        public Hand LeftHand => _leftHand;
+        public Hand RightHand => _rightHand;
 
-        public IHookableWaepon LeftWeapon=>_leftWeaponSlot;
-        public IHookableWaepon RightWeapon=>_rightWeaponSlot;
+        public RopeVisualization RopeVisualizationLeft => _ropeVisualizationLeft;
+        public RopeVisualization RopeVisualizationRight => _ropeVisualizationRight;
         
 
         [Header("Visualization")]
@@ -43,8 +47,8 @@ namespace Player
         private GasBoosting _gasBoosting;
 
 
-        private IHookableWaepon _leftWeaponSlot;
-        private IHookableWaepon _rightWeaponSlot;
+        private IHookableWeapon _leftWeaponSlot;
+        private IHookableWeapon _rightWeaponSlot;
         
         
         private bool _leftRising;
@@ -54,19 +58,19 @@ namespace Player
         private void Awake()
         {
             _gasBoosting = new GasBoosting(_rigidbody, _camTransform);
-            _leftGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject);
-            _rightGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject);
+            _leftGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject,_ropeVisualizationLeft);
+            _rightGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject,_ropeVisualizationRight);
             
             InteractionSubscribing();
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
-            if (_leftRising&&_leftGrappler.IsHooked)
+            if (_leftRising)
             {
                 _leftGrappler.Rising();
             }
-            if (_rightRising&&_rightGrappler.IsHooked)
+            if (_rightRising)
             {
                 _rightGrappler.Rising();
             }
@@ -87,45 +91,42 @@ namespace Player
         {
             _leftHand.TakeWeapon += weapon =>
             {
-                SetupWeapon(weapon, out _leftWeaponSlot, _rightGrappler,_ropeVisualizationLeft);
+                SetupWeapon(weapon, out _leftWeaponSlot, _leftGrappler);
             };
 
             _leftHand.DropItem += () =>
             {
+                _leftWeaponSlot.ResetWeapon();
                 _leftWeaponSlot = null;
             };
             
             
             _rightHand.TakeWeapon += weapon =>
             {
-                SetupWeapon(weapon, out _rightWeaponSlot, _rightGrappler,_ropeVisualizationRight);
+                SetupWeapon(weapon, out _rightWeaponSlot, _rightGrappler);
             };
             _rightHand.DropItem += () =>
             {
+                _rightWeaponSlot.ResetWeapon();
                 _rightWeaponSlot = null;
             };
         }
 
-        private void SetupWeapon(IHookableWaepon weapon,out IHookableWaepon weaponSlot, GrapplerGun grapplerGun,RopeVisualization ropeVisualization)
+        private void SetupWeapon(IHookableWeapon weapon,out IHookableWeapon weaponSlot, GrapplerGun grapplerGun)
         {
             weaponSlot = weapon;
             weaponSlot.Hooked += () =>
             {
                 grapplerGun.StartGrappling(weapon.ShootPoint);
-
-                ropeVisualization.SetSprintJoint(grapplerGun.Spring);
-                ropeVisualization.SetShootPoint(weapon.ShootPoint);
-                ropeVisualization.IsGrappling = true;
-                
                 CheckMoveType();
             };
             weaponSlot.UnHooked += () =>
             {
-                ropeVisualization.IsGrappling = false;
                 grapplerGun.StopGrappling();
                 CheckMoveType();
             };
         }
+        
 
         private void BoostInputActionSubscribe()
         {
@@ -135,6 +136,7 @@ namespace Player
                 {
                     Vector2 input = ctx.ReadValue<Vector2>();
                     _gasBoosting.Boost(input);
+                    Boost?.Invoke();
                 }
             };
         }

@@ -1,28 +1,34 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace OmniDirectionalMobilityFolder
 {
     public class AimVisualization : MonoBehaviour
     {
+        
         private const float Distance = 100;
-        private const float Offset = 0.01f;
-        private const int ScaleFactor = 2;
+        private const int ScaleFactor = 1;
 
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private Transform _visual;
 
+        private bool _isHooked;
 
-        private bool _isShowing;
 
-        public void SetIsShowing(bool isShowing)
+
+        public void SetIsHooked(bool hooked)
         {
-            _isShowing = isShowing;
+            _isHooked = hooked;
         }
 
+
+        
+        
         private void Update()
         {
-            if (_isShowing)
+            if (!_isHooked)
             {
                 Vector3 rayOrg = _shootPoint.position;
                 Vector3 rayDir = _shootPoint.forward;
@@ -32,7 +38,7 @@ namespace OmniDirectionalMobilityFolder
                 {
                     if (!_visual.gameObject.activeInHierarchy)
                     {
-                        TurnOnSight();
+                        TurnOnSign();
                     }
 
                     _visual.position = raycastHit.point /*+ raycastHit.normal.normalized *//** Offset*/;
@@ -44,7 +50,7 @@ namespace OmniDirectionalMobilityFolder
                 {
                     if (_visual.gameObject.activeInHierarchy)
                     {
-                        TurnOffSight();
+                        TurnOffSign();
                     }
                 }
             }
@@ -52,18 +58,19 @@ namespace OmniDirectionalMobilityFolder
             {
                 if (_visual.gameObject.activeInHierarchy)
                 {
-                    TurnOffSight();
+                    TurnOffSign();
                 }
             }
+               
         }
 
 
-        private void TurnOnSight()
+        private void TurnOnSign()
         {
             _visual.gameObject.SetActive(true);
         }
 
-        private void TurnOffSight()
+        private void TurnOffSign()
         {
             _visual.gameObject.SetActive(false);
         }

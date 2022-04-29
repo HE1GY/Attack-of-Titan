@@ -1,29 +1,32 @@
-﻿using UnityEngine;
+﻿using OmniDirectionalMobilityFolder.Visualization;
+using UnityEngine;
 
 namespace OmniDirectionalMobilityFolder
 {
     public class GrapplerGun
     {
         public bool IsHooked { get; private set; }
-        public SpringJoint Spring { get=>_springJoint;}
 
         private const float MaxDistance=100;
         private const int RiseDistance = 1;
         private const int RaiseSpeed = 15;
         private const int SpringJointMassScale = 50;
-        private const int SpringJointSpring = 1;
+        private const float SpringJointSpring = 0.5f;
+        private const int SpringJointBreak = 100;
 
         private readonly LayerMask _layerMask;
         private readonly GameObject _player;
+        private readonly RopeVisualization _ropeVisualization;
 
         private  Transform _shootPoint;
         private  SpringJoint _springJoint;
 
 
-        public GrapplerGun( LayerMask layerMask, GameObject player)
+        public GrapplerGun( LayerMask layerMask, GameObject player,RopeVisualization ropeVisualization)
         {
             _layerMask = layerMask;
             _player = player;
+            _ropeVisualization = ropeVisualization;
         }
 
         public void StartGrappling(Transform shootPointTransform)
@@ -51,8 +54,12 @@ namespace OmniDirectionalMobilityFolder
                 _springJoint.maxDistance = Vector3.Distance(targetRaycastHit.point, _shootPoint.position);
                 _springJoint.massScale =SpringJointMassScale;
                 _springJoint.spring = SpringJointSpring;
-                _springJoint.breakForce = 100;
-                _springJoint.breakTorque = 100;
+                _springJoint.breakForce = SpringJointBreak;
+                _springJoint.breakTorque = SpringJointBreak;
+
+                _ropeVisualization.SetSprintJoint(_springJoint);// bad practice
+                _ropeVisualization.SetShootPoint(shootPointTransform);
+                _ropeVisualization.Visualize(true);
             }
         }
 
@@ -63,14 +70,16 @@ namespace OmniDirectionalMobilityFolder
             {
                 _springJoint.maxDistance = Mathf.Infinity;
                 _springJoint.connectedBody = null;
+                
+                _ropeVisualization.Visualize(false);
             }
         }
 
         public void Rising()
         {
-            if (_shootPoint && Vector3.Distance(_springJoint.connectedAnchor, _shootPoint.position) > RiseDistance)
+            if (IsHooked &&_shootPoint && Vector3.Distance(_springJoint.connectedAnchor, _shootPoint.position) > RiseDistance)
             {
-                _springJoint.maxDistance -= Time.deltaTime*RaiseSpeed;
+                _springJoint.maxDistance -= Time.fixedDeltaTime*RaiseSpeed;
             }
         }
 

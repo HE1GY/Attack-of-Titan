@@ -11,13 +11,12 @@ namespace Player
         [SerializeField] private ActionBasedContinuousMoveProvider _continuousMove;
         [SerializeField]private InputActionReference _inputAction;
         [SerializeField] private float _maxForce;
-    
-        private Rigidbody _rigidbody;
+        [SerializeField]private Rigidbody _rigidbody;
+
 
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
             _inputAction.action.performed += ctx => Jump(_maxForce);
             _inputAction.action.canceled += ScaledJump;
         }

@@ -4,10 +4,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace OmniDirectionalMobilityFolder
 {
-    public interface IHookableWaepon
+    public interface IHookableWeapon
     {
         Transform ShootPoint { get;}
         event Action Hooked;
         event Action UnHooked;
+
+        void ResetWeapon();
     }
 }
