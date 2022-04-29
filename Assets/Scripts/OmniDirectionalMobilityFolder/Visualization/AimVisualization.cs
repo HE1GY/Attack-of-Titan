@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace OmniDirectionalMobilityFolder
+namespace OmniDirectionalMobilityFolder.Visualization
 {
     public class AimVisualization : MonoBehaviour
     {
-        
         private const float Distance = 100;
         private const int ScaleFactor = 1;
 
@@ -17,15 +14,12 @@ namespace OmniDirectionalMobilityFolder
         private bool _isHooked;
 
 
-
         public void SetIsHooked(bool hooked)
         {
             _isHooked = hooked;
         }
 
 
-        
-        
         private void Update()
         {
             if (!_isHooked)
@@ -41,7 +35,7 @@ namespace OmniDirectionalMobilityFolder
                         TurnOnSign();
                     }
 
-                    _visual.position = raycastHit.point /*+ raycastHit.normal.normalized *//** Offset*/;
+                    _visual.position = raycastHit.point;
                     _visual.up = raycastHit.normal;
                     _visual.localScale =
                         Vector3.Distance(transform.position, raycastHit.point) * _shootPoint.localScale * ScaleFactor;
@@ -61,7 +55,6 @@ namespace OmniDirectionalMobilityFolder
                     TurnOffSign();
                 }
             }
-               
         }
 
 

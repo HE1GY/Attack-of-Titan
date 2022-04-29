@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace OmniDirectionalMobilityFolder.SoundFX
@@ -6,9 +5,8 @@ namespace OmniDirectionalMobilityFolder.SoundFX
     [RequireComponent(typeof(AudioSource))]
     public class ManeuveringSound : MonoBehaviour
     {
-        private const int LockVolume = 1000000000;
         [SerializeField] private Maneuvering _maneuvering;
-        
+
         [SerializeField] private AudioClip _ropeLock;
         [SerializeField] private AudioClip _gasBoost;
         [SerializeField] private AudioClip _hookFire;
@@ -22,21 +20,15 @@ namespace OmniDirectionalMobilityFolder.SoundFX
 
         private void OnEnable()
         {
-            _maneuvering.LeftHand.TakeWeapon+= weapon =>
-            {
-                weapon.Hooked+= OnHookFire;
-            };
-            _maneuvering.RightHand.TakeWeapon+= weapon =>
-            {
-                weapon.Hooked+= OnHookFire;
-            };
+            _maneuvering.LeftHand.TakeWeapon += weapon => { weapon.Hooked += OnHookFire; };
+            _maneuvering.RightHand.TakeWeapon += weapon => { weapon.Hooked += OnHookFire; };
 
             _maneuvering.RopeVisualizationLeft.Lock += OnLock;
             _maneuvering.RopeVisualizationRight.Lock += OnLock;
 
             _maneuvering.Boost += OnBoost;
         }
-        
+
 
         private void OnHookFire()
         {
@@ -45,7 +37,7 @@ namespace OmniDirectionalMobilityFolder.SoundFX
 
         private void OnLock(Vector3 lockPos)
         {
-            AudioSource.PlayClipAtPoint(_ropeLock,lockPos,LockVolume);
+            AudioSource.PlayClipAtPoint(_ropeLock, lockPos);
         }
 
         private void OnBoost()

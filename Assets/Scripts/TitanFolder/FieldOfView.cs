@@ -1,6 +1,5 @@
 ﻿using System;
-using OmniDirectionalMobilityFolder;
-using Player;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 namespace TitanFolder
@@ -30,17 +29,17 @@ namespace TitanFolder
 
             foreach (Collider collider in colliders)
             {
-                if (collider.gameObject.TryGetComponent(out Maneuvering maneuvering))
+                if (collider.gameObject.TryGetComponent(out XROrigin xROrigin))
                 {
-                    Vector3 direction = maneuvering.transform.position - _eyesPosition.position;
+                    Vector3 direction = xROrigin.transform.position - _eyesPosition.position;
                     if (Vector3.Angle(direction, -_eyesPosition.forward) < _fovAngle/2)
                     {
                         Ray ray = new Ray(_eyesPosition.position, direction);
                         float distanceBetween =
-                            Vector3.Distance(_eyesPosition.position, maneuvering.transform.position);
+                            Vector3.Distance(_eyesPosition.position, xROrigin.transform.position);
                         if (!Physics.Raycast(ray, distanceBetween, _obstacles))
                         {
-                            Detected?.Invoke(maneuvering.transform);
+                            Detected?.Invoke(xROrigin.transform);
                             return;
                         }
                     }

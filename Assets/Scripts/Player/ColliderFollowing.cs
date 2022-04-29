@@ -5,8 +5,8 @@ namespace Player
 {
     public class ColliderFollowing : MonoBehaviour
     {
-        [SerializeField]private float _additionHeight;
-    
+        [SerializeField] private float _additionHeight;
+
         private CapsuleCollider _collider;
         private XROrigin _xrOrigin;
 
@@ -20,6 +20,7 @@ namespace Player
         {
             CapsuleFollowHeadSet();
         }
+
         private void CapsuleFollowHeadSet()
         {
             _collider.height = _xrOrigin.CameraInOriginSpaceHeight + _additionHeight;

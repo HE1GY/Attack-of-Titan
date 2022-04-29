@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Installers
 {
-    public class TimeInstaller:MonoInstaller
+    public class TimeInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

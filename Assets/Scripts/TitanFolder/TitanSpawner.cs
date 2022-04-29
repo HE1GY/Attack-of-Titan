@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace TitanFolder
@@ -8,15 +9,12 @@ namespace TitanFolder
     public class TitanSpawner:MonoBehaviour,ITitanSpawner
     {
         [SerializeField] private List<Transform> _spawnPoints;
-        /*[SerializeField] private int _count=5;*/
-        
-        /*private MonoPool<Titan> _titanPool;*/
+
         private Titan.Factory _titanFactory;
 
         [Inject]
         public void Constructor(Titan.Factory titanFactory)
         {
-            /*_titanPool = new MonoPool<Titan>(_count, gameObject.transform, titanFactory);*/
             _titanFactory = titanFactory;
         }
 
@@ -25,7 +23,10 @@ namespace TitanFolder
             for (int i = 0; i < count; i++)
             {
                 Titan titan= _titanFactory.Create();
-                titan.transform.position =GetRandomSpawnPosition();
+                
+                Vector3 spawnPoint=GetRandomSpawnPosition();
+                
+                titan.transform.position = spawnPoint;
             }
         }
 

@@ -8,14 +8,9 @@ namespace TitanFolder.Body
     {
         public event Action DestroyPart;
 
-        [Header("HIT ZONE")]
-        [SerializeField] private ConfigurableJoint _configurableJoint;
-        
-        /*public ConfigurableJoint CurrentJoint { get=>_configurableJoint; set=>_configurableJoint=value;}*/ //for pool
-
+        [Header("HIT ZONE")] [SerializeField] private ConfigurableJoint _configurableJoint;
         [SerializeField] private float _strength;
         [SerializeField] private ParticleSystem _hitEffect;
-        
 
 
         protected override void Start()
@@ -27,19 +22,18 @@ namespace TitanFolder.Body
         private void OnBladeEnter()
         {
             _strength -= 1;
-            if (_strength <= 0&& _configurableJoint)
+            if (_strength <= 0 && _configurableJoint)
             {
                 _configurableJoint.breakForce = 0;
                 DestroyPart?.Invoke();
             }
         }
 
-        protected override void OnHoverEntered(HoverEnterEventArgs args)// blade mask
+        protected override void OnHoverEntered(HoverEnterEventArgs args) // blade mask
         {
             base.OnHoverEntered(args);
             OnBladeEnter();
             _hitEffect.Play();
         }
-        
     }
 }

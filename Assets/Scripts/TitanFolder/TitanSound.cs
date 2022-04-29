@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TitanSound : MonoBehaviour
+namespace TitanFolder
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(AudioSource))]
+    public class TitanSound : MonoBehaviour
     {
-        
-    }
+         [SerializeField] private Body.Body body;
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] private AudioClip _fall;
+        [SerializeField] private AudioClip _spawned;
         
+        private AudioSource _audioSource;
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void OnEnable()
+        {
+            _audioSource.PlayOneShot(_spawned);
+            body.Touch += PlayFall;
+        }
+
+        private void OnDisable()
+        {
+            body.Touch -= PlayFall;
+        }
+
+
+        private void PlayFall()
+        {
+            _audioSource.PlayOneShot(_fall);
+        }
     }
 }

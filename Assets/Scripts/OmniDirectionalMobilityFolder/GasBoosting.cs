@@ -21,6 +21,5 @@ namespace OmniDirectionalMobilityFolder
             forceDirection.Normalize();
             _rigidbody.velocity = forceDirection * BoostVelocity;
         }
-
     }
 }

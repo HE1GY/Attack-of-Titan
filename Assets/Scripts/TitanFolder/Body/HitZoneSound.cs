@@ -1,12 +1,10 @@
-using System;
 using UnityEngine;
 
-namespace OmniDirectionalMobilityFolder.SoundFX
+namespace TitanFolder.Body
 {
     [RequireComponent(typeof(AudioSource))]
     public class HitZoneSound : MonoBehaviour
     {
-        
         [SerializeField] private AudioClip _cutting;
 
         private AudioSource _audioSource;

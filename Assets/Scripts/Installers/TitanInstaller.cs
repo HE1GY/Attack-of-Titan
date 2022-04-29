@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Installers
 {
-    public class TitanInstaller :MonoInstaller
+    public class TitanInstaller : MonoInstaller
     {
         [SerializeField] private TitanFolder.Titan _titanPrefab;
         [SerializeField] private TitanSpawner _titanSpawner;
@@ -17,7 +17,7 @@ namespace Installers
                 .To<TitanSpawner>()
                 .FromComponentInNewPrefab(_titanSpawner)
                 .AsSingle();
-            
+
             Container.BindFactory<TitanFolder.Titan, TitanFolder.Titan.Factory>()
                 .FromComponentInNewPrefab(_titanPrefab)
                 .AsSingle();

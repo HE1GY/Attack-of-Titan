@@ -9,23 +9,21 @@ namespace OmniDirectionalMobilityFolder
 {
     public class Maneuvering : MonoBehaviour
     {
-        /*public event Action<Vector3> Hooked;
-        public event Action HookFire;*/
         public event Action Boost;
         public Hand LeftHand => _leftHand;
         public Hand RightHand => _rightHand;
 
         public RopeVisualization RopeVisualizationLeft => _ropeVisualizationLeft;
         public RopeVisualization RopeVisualizationRight => _ropeVisualizationRight;
-        
 
-        [Header("Visualization")]
-        [SerializeField] private RopeVisualization _ropeVisualizationLeft;
+
+        [Header("Visualization")] [SerializeField]
+        private RopeVisualization _ropeVisualizationLeft;
+
         [SerializeField] private RopeVisualization _ropeVisualizationRight;
 
 
-        [Header("Grapple")]
-        [SerializeField] private LayerMask _layerMask;
+        [Header("Grapple")] [SerializeField] private LayerMask _layerMask;
 
         [SerializeField] private InputActionReference _leftRopeRaising;
         [SerializeField] private InputActionReference _rightRopeRaising;
@@ -35,11 +33,10 @@ namespace OmniDirectionalMobilityFolder
         [SerializeField] private Hand _rightHand;
 
 
-        [Header("Boosting")]
-        [SerializeField] private Transform _camTransform;
+        [Header("Boosting")] [SerializeField] private Transform _camTransform;
         [SerializeField] private InputActionReference _boostAction;
         [SerializeField] private Rigidbody _rigidbody;
-        
+
 
         private GrapplerGun _leftGrappler;
         private GrapplerGun _rightGrappler;
@@ -49,8 +46,8 @@ namespace OmniDirectionalMobilityFolder
 
         private IHookableWeapon _leftWeaponSlot;
         private IHookableWeapon _rightWeaponSlot;
-        
-        
+
+
         private bool _leftRising;
         private bool _rightRising;
 
@@ -58,18 +55,19 @@ namespace OmniDirectionalMobilityFolder
         private void Awake()
         {
             _gasBoosting = new GasBoosting(_rigidbody, _camTransform);
-            _leftGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject,_ropeVisualizationLeft);
-            _rightGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject,_ropeVisualizationRight);
-            
+            _leftGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject, _ropeVisualizationLeft);
+            _rightGrappler = new GrapplerGun(_layerMask, _rigidbody.gameObject, _ropeVisualizationRight);
+
             InteractionSubscribing();
         }
-        
+
         private void FixedUpdate()
         {
             if (_leftRising)
             {
                 _leftGrappler.Rising();
             }
+
             if (_rightRising)
             {
                 _rightGrappler.Rising();
@@ -89,22 +87,16 @@ namespace OmniDirectionalMobilityFolder
 
         private void HandleHandsEvents()
         {
-            _leftHand.TakeWeapon += weapon =>
-            {
-                SetupWeapon(weapon, out _leftWeaponSlot, _leftGrappler);
-            };
+            _leftHand.TakeWeapon += weapon => { SetupWeapon(weapon, out _leftWeaponSlot, _leftGrappler); };
 
             _leftHand.DropItem += () =>
             {
                 _leftWeaponSlot.ResetWeapon();
                 _leftWeaponSlot = null;
             };
-            
-            
-            _rightHand.TakeWeapon += weapon =>
-            {
-                SetupWeapon(weapon, out _rightWeaponSlot, _rightGrappler);
-            };
+
+
+            _rightHand.TakeWeapon += weapon => { SetupWeapon(weapon, out _rightWeaponSlot, _rightGrappler); };
             _rightHand.DropItem += () =>
             {
                 _rightWeaponSlot.ResetWeapon();
@@ -112,7 +104,7 @@ namespace OmniDirectionalMobilityFolder
             };
         }
 
-        private void SetupWeapon(IHookableWeapon weapon,out IHookableWeapon weaponSlot, GrapplerGun grapplerGun)
+        private void SetupWeapon(IHookableWeapon weapon, out IHookableWeapon weaponSlot, GrapplerGun grapplerGun)
         {
             weaponSlot = weapon;
             weaponSlot.Hooked += () =>
@@ -126,7 +118,7 @@ namespace OmniDirectionalMobilityFolder
                 CheckMoveType();
             };
         }
-        
+
 
         private void BoostInputActionSubscribe()
         {
@@ -149,10 +141,10 @@ namespace OmniDirectionalMobilityFolder
             _rightRopeRaising.action.started += ctx => _rightRising = true;
             _rightRopeRaising.action.canceled += ctx => _rightRising = false;
         }
-        
+
         private void CheckMoveType()
         {
-            _continuousMove.enabled =  !_leftGrappler.IsHooked && !_rightGrappler.IsHooked;
+            _continuousMove.enabled = !_leftGrappler.IsHooked && !_rightGrappler.IsHooked;
         }
     }
 }

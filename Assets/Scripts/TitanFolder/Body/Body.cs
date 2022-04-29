@@ -4,20 +4,13 @@ using UnityEngine;
 
 namespace TitanFolder.Body
 {
-    public class Chest : MonoBehaviour
+    public class Body : MonoBehaviour
     {
-
-        [SerializeField] private LayerMask _ground;
-        public event Action TouchTheGround;
+        public event Action Touch;
 
         private void OnCollisionEnter(Collision collision)
         {
-            print("collision");
-            /*if (collision.gameObject.layer == _ground)*/
-            {
-                TouchTheGround?.Invoke();
-                print("ground");
-            }
+            Touch?.Invoke();
         }
     }
 }

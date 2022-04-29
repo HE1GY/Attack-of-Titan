@@ -8,13 +8,13 @@ namespace UI
     public class InputScrollView : MonoBehaviour
     {
         public event Action<int> Spawn;
-        
+
         [SerializeField] private float[] _positionX;
         [SerializeField] private RectTransform _content;
         [SerializeField] private float _speed;
         [SerializeField] private Button _buttonSpawn;
 
-       
+
         private float _currentX;
         private int _currentIndex;
 
@@ -26,40 +26,37 @@ namespace UI
 
         private void OnEnable()
         {
-
-            _buttonSpawn.onClick.AddListener(()=>Spawn?.Invoke(GetNumber()));
+            _buttonSpawn.onClick.AddListener(() => Spawn?.Invoke(GetNumber()));
         }
 
         private void OnDisable()
         {
-            _buttonSpawn.onClick.RemoveListener(()=>Spawn?.Invoke(GetNumber()));
+            _buttonSpawn.onClick.RemoveListener(() => Spawn?.Invoke(GetNumber()));
         }
 
         public void Minus()
         {
-            if (_currentIndex >0)
+            if (_currentIndex > 0)
             {
                 _currentIndex--;
-                float  targetPos=_positionX[_currentIndex];
+                float targetPos = _positionX[_currentIndex];
                 Transition(targetPos);
             }
-            
         }
-        
+
         public void Plus()
         {
-            if (_currentIndex < _positionX.Length-1)
+            if (_currentIndex < _positionX.Length - 1)
             {
                 _currentIndex++;
-                float  targetPos=_positionX[_currentIndex];
+                float targetPos = _positionX[_currentIndex];
                 Transition(targetPos);
             }
-            
         }
 
         private void SetHorizontalPosition(float x)
         {
-            _content.anchoredPosition =new Vector2(x,0) ;
+            _content.anchoredPosition = new Vector2(x, 0);
         }
 
         private async void Transition(float targetPos)
@@ -76,19 +73,19 @@ namespace UI
 
         private async Task DoTransitionMax(float targetPos)
         {
-            while (targetPos>_currentX)
+            while (targetPos > _currentX)
             {
-                _currentX +=_speed*Time.deltaTime;
+                _currentX += _speed * Time.deltaTime;
                 SetHorizontalPosition(_currentX);
                 await Task.Yield();
             }
         }
-        
+
         private async Task DoTransitionMin(float targetPos)
         {
-            while (targetPos<_currentX)
+            while (targetPos < _currentX)
             {
-                _currentX -=_speed*Time.deltaTime;
+                _currentX -= _speed * Time.deltaTime;
                 SetHorizontalPosition(_currentX);
                 await Task.Yield();
             }
@@ -96,8 +93,7 @@ namespace UI
 
         private int GetNumber()
         {
-            return _currentIndex+1;
+            return _currentIndex + 1;
         }
-        
     }
 }

@@ -9,9 +9,8 @@ namespace TitanFolder.Body
         [SerializeField] private float _delay;
         [SerializeField] private ParticleSystem _deathEffect;
 
-        [SerializeField]private Transform[] _parents;
-        
-        
+        [SerializeField] private Transform[] _parents;
+
 
         private void OnEnable()
         {
@@ -29,17 +28,18 @@ namespace TitanFolder.Body
             await DelayDeath();
         }
 
-        private async  Task DelayDeath()
+        private async Task DelayDeath()
         {
-            await Task.Delay((int)_delay/2*1000);
+            await Task.Delay((int) _delay / 2 * 1000);
             _deathEffect.Play();
-            
-            await Task.Delay((int)_delay/2*1000);
-            
+
+            await Task.Delay((int) _delay / 2 * 1000);
+
             foreach (var parent in _parents)
             {
                 parent.gameObject.SetActive(false);
             }
+
             _deathEffect.Stop();
         }
     }

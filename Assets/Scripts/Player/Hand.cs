@@ -10,7 +10,7 @@ namespace Player
     {
         public event Action<IHookableWeapon> TakeWeapon;
         public event Action DropItem;
-        
+
         public void Grab(SelectEnterEventArgs args)
         {
             GameObject selectedGameObject = args.interactableObject.transform.gameObject;
@@ -21,7 +21,7 @@ namespace Player
         {
             DropItem?.Invoke();
         }
-        
+
         private void Taking(GameObject gameObject)
         {
             if (gameObject.TryGetComponent(out IHookableWeapon waepon))
